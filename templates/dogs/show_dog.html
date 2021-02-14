@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="profile-row" class="full-width">
+</div>
+<img src="{{ dog.photo }}" alt="Image for {{ dog.first_name}}" id="profile-avatar">
+<div class="row full-width">
+  <div class="container">
+    <div class="row justify-content-end">
+      <div class="col-9">
+        <ul class="user-stats nav nav-pills">
+            
+                <li class="stat">
+                  <p class="small">Breed</p>
+                    <h4>
+                    <p>{{ dog.breed }}</p>
+                    </h4>
+                </li>
+                <li class="stat">
+                    <p class="small">Weight</p>
+                    <h4>
+                    <p>{{ dog.weight }}</p>
+                    </h4>
+                </li>
+                <li class="stat">
+                    <p class="small">Age</p>
+                    <h4>
+                    <p>{{ dog.age }}</p>
+                    </h4>
+                </li>
+                {% if dog.color %}
+                <li class="stat">
+                    <p class="small">Color</p>
+                    <h4>
+                    <p>{{ dog.color}}</p>
+                    </h4>
+                </li>
+                {% endif  %}
+            
+          <div class="ml-auto">
+            {% if g.user.id == dog.dog_owner.id and not session["is_worker"]%}
+            
+            <a href="/dogs/{{dog.id}}/edit" class="btn btn-outline-secondary">Edit Profile</a>
+            <form method="POST" action="/dogs/{{dog.id}}/delete" class="form-inline">
+              <button class="btn btn-outline-danger ml-2">Delete Profile</button>
+            </form>
+            {% endif %}
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <h4 id="sidebar-username">{{ dog.first_name.upper() }}</h4>
+    {% if dog.description %}
+    <p>is <em>{{dog.description}}</em></p>
+    {% endif %}
+  </div>
+</div>
+
+<div class="row small-screen">
+  <div class="col-sm-3">
+    
+    <p><b>Breed:</b><em> {{dog.breed}}</em></p>
+    <p><b>Age:</b><em> {{dog.age}}</em></p>
+    <p><b>Weight:</b><em> {{dog.weight}}</em></p>
+
+    {% if dog.color %}
+    <p>Color<em>{{dog.color}}</em></p>
+    {% endif %}
+
+  </div>
+</div>
+
+<div class="row small-screen mt-2 justify-content-center">
+  <div class="col-6">
+    {% if g.user.id == dog.dog_owner.id and not session["is_worker"]%}
+      <a class="btn btn-secondary d-block mt-2" href="/dogs/{{dog.id}}/edit">Edit Profile</a>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

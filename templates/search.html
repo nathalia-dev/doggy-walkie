@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% if dog_walkers|length == 0 %}
+    <h2 class="join-message text-center mt-5 mb-5"> Sorry, no dog walkers were founded...</h2>
+  {% else %}
+  <h2 class="join-message text-center mt-5 mb-5">YOUR RESULTS</h2>
+    <div class="row justify-content-center">
+      <div class="col-sm-9">
+        <hr class="border-top border-botom mb-5">
+        <div class="row justify-content-center">
+          
+
+          {% for dog_walker in dog_walkers %}
+
+            <div class="col-lg-4 col-md-6 col-8">
+              <div class="card user-card">
+                <div class="card-inner">
+                    <div class="image-wrapper">
+                        <img src="/static/images/image_header2.jpg" alt="" class="card-hero">
+                      </div>
+                  <div class="card-contents">
+                    <a href="/dog_walkers/{{dog_walker.id}}" class="card-link">
+                      <img src="{{ dog_walker.photo }}" alt="Image for {{ dog_walker.first_name }}" class="card-image">
+                      <p>{{ dog_walker.name.upper()}}</p>
+                    </a>
+
+                  </div>
+                  {% if dog_walker.address %}
+                    <p class="card-bio"> {{dog_walker.address.neighbor}} </p>
+                    <p class="card-bio mt-1"> {{dog_walker.address.city}} - {{dog_walker.address.state}} </p>
+                  {% endif %}
+                  {% if dog_walker.rate%}
+                    <p class="card-bio mt-1 text-right"> <i class="fas fa-star text-warning"></i> {{dog_walker.rate}} </p>
+                  {% endif %}
+
+                </div>
+              </div>
+            </div>
+
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% if appointments|length == 0 %}
+    <h3 class="my-3">No appointments yet ...</h3>
+    <a href="/appointments/new" class="btn btn-dark justify-content-center"> Create </a>
+  {% else %}
+  <h2 class="my-5 text-center"> APPOINTMENTS </h2>
+  
+    <div class="row justify-content-center">
+      <div class="col-sm-9">
+
+          <div class="row justify-content-between mb-3">
+              <a href="/dog_walkers/{{g.user.id}}/done_appointments" class="btn btn-outline-dark justify-content-center">Done Appointments </a>
+              <a href="/appointments/new" class="btn btn-dark justify-content-center"> Create </a>
+          </div>
+
+        <div class="row">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Dog Owner</th>
+                <th scope="col">Date</th>
+                <th scope="col">Start at</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Done?</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for aptment in appointments %}
+                {% if not aptment.status %}
+                    <tr>
+                        <th scope="row"><a href="/dog_owners/{{aptment.dog_owner.id}}">{{aptment.dog_owner.name}}</a></th>
+                        <td>{{aptment.date}}</td>
+                        <td>{{aptment.time_start}} - {{aptment.day_period}}</td>
+                        <td>{{aptment.duration}}</td>
+                        
+                        <form action = "/appointments/{{aptment.id}}/change_status" method="POST">
+                            <td>
+                                <button class="btn btn-outline-success"><i class="far fa-check-circle"></i></button>
+                            </td>
+                        </form>
+                        
+
+                        <form action = "/appointments/{{aptment.id}}/delete" method="POST">
+                            <td> <button class="btn btn-outline-danger"><i class="fas fa-trash"></i></button> </td>
+                        </form>
+                        
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+          </table>
+          
+        
+           
+          
+
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}

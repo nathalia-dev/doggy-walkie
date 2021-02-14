@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% if appointments|length == 0 %}
+    <h3>No Appointments was done yet ...</h3>
+  {% else %}
+  <h2 class="my-5 text-center"> DONE APPOINTMENTS </h2>
+  
+    <div class="row justify-content-center">
+      <div class="col-sm-9">
+
+          <div class="row justify-content-between mb-3">
+              <a href="/dog_walkers/{{g.user.id}}/appointments" class="btn btn-outline-dark justify-content-center"> Appointments </a>
+          </div>
+
+        <div class="row">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Dog Owner</th>
+                <th scope="col">Date</th>
+                <th scope="col">Start at</th>
+                <th scope="col">Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for aptment in appointments %}
+                {% if aptment.status %}
+                    <tr>
+                        <th scope="row"><a href="/dog_owners/{{aptment.dog_owner.id}}">{{aptment.dog_owner.name}}</a></th>
+                        <td>{{aptment.date}}</td>
+                        <td>{{aptment.time_start}} - {{aptment.day_period}}</td>
+                        <td>{{aptment.duration}}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}

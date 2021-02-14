@@ -1,0 +1,71 @@
+{% extends 'base.html' %} {% block content %}
+
+<div id="profile-row" class="full-width">
+	<!-- <img src="/static/images/image_header2.jpg"> -->
+</div>
+<img src="{{ user.photo }}" alt="Image for {{ user.name}}" id="profile-avatar" />
+<div class="row full-width">
+	<div class="container">
+		<div class="row justify-content-end">
+			<div class="col-9">
+				<ul class="user-stats nav nav-pills">
+					{% if g.user.id == user.id and session["is_worker"]%}
+					<li class="stat">
+						<p class="small">Messages</p>
+						<h4>
+							<a href="/dog_walkers/{{g.user.id}}/messages">{{ user.message | length }}</a>
+						</h4>
+					</li>
+					<li class="stat">
+						<p class="small">Appointments</p>
+						<h4>
+							<a href="/dog_walkers/{{g.user.id}}/appointments">{{ user.appointments | length }}</a>
+						</h4>
+					</li>
+					{% endif %}
+					<div class="ml-auto">
+						{% if g.user.id == user.id and session["is_worker"]%}
+						<a href="/dog_walkers/{{user.id}}/address" class="btn btn-outline-secondary mr-2"> Address</a>
+						<a href="/dog_walkers/profile" class="btn btn-outline-secondary">Edit Profile</a>
+						<form method="POST" action="/dog_walkers/delete" class="form-inline">
+							<button class="btn btn-outline-danger ml-2">Delete Profile</button>
+						</form>
+						{% else %} {% if not session["is_worker"] %}
+						<a href="/messages/{{g.user.id}}/{{user.id}}" class="btn btn-outline-secondary">Send a Message</a>
+						{% endif %} {% endif %}
+					</div>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-3">
+		<h4 id="sidebar-username">{{ user.name }}</h4>
+
+		{% if user.description %}
+		<p><em>{{user.description}}</em></p>
+		{% endif %}
+
+		<p class="user-location mb-2"><span class="fa fa-map-marker"></span> {{user.address.city}}</p>
+
+		{% if user.rate %}
+		<p><i class="fas fa-star text-warning"></i> {{user.rate}}</p>
+		{% endif %}
+	</div>
+
+</div>
+<div class="row small-screen mt-2 justify-content-center">
+  <div class="col-6">
+    {% if g.user.id == user.id and session["is_worker"]%}
+      <a class="btn btn-secondary d-block" href="/dog_walkers/{{g.user.id}}/messages">Messages</a>
+      <a class="btn btn-secondary d-block mt-2" href="/dog_walkers/{{g.user.id}}/appointments">Appointments</a>
+      <a class="btn btn-secondary d-block mt-2" href="/dog_walkers/{{user.id}}/address">Address</a>
+      <a class="btn btn-secondary d-block mt-2" href="/dog_walkers/profile" >Edit Profile</a>
+    {% else %} {% if not session["is_worker"] %}
+    <a href="/messages/{{g.user.id}}/{{user.id}}" class="btn btn-outline-secondary">Send a Message</a>
+    {% endif %} {% endif %}
+  </div>
+</div>
+{% endblock %}

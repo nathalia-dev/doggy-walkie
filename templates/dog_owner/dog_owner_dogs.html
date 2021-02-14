@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="text-center">
+  <h2 class="mt-5 mb-4">DOGS</h2>
+{% if g.user.id == user.id and not session["is_worker"]%}
+  <a href="/dog_owners/{{g.user.id}}/dogs/add" class="btn btn-outline-dark mb-3 px-5"> ADD YOUR FRIEND </a>
+{% endif %}
+</div>
+
+
+  
+    <div class="row justify-content-center mt-5">
+      <div class="col-sm-9">
+        <hr class="border-top border-bottom">
+        <div class="row justify-content-center">
+
+          {% for dog in dogs %}
+
+            <div class="col-lg-4 col-md-6 col-8">
+              <div class="card user-card">
+                <div class="card-inner">
+                    <div class="image-wrapper">
+                        <img src="/static/images/image_header5.jpg" alt="" class="card-hero">
+                      </div>
+                  <div class="card-contents">
+                    <a href="/dogs/{{dog.id}}" class="card-link">
+                      <img src="{{ dog.photo }}" alt="Image for {{ dog.first_name }}" class="card-image">
+                      <p>{{ dog.first_name.upper()}}</p>
+                    </a>
+
+                  </div>
+                  
+                    <p class="card-bio"> {{dog.breed.upper()}} </p>
+                  
+                </div>
+              </div>
+            </div>
+
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+  
+{% endblock %}

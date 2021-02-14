@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row">
+    <!-- dog_owner card -->
+    <aside class="col-md-4 col-lg-3 col-sm-12" id="home-aside">
+      <div class="card user-card hide">
+        <div>
+          <div class="image-wrapper">
+            <img src="/static/images/image_header.jpg" alt="" class="card-hero">
+          </div>
+          <a href="/dog_owners/{{dog_owner.id}}" class="card-link">
+            <img src="{{ dog_owner.photo }}"
+                 alt="Image for {{ dog_owner.name}}"
+                 class="card-image">
+            <p>{{ dog_owner.name }}</p>
+          </a>
+        </div>
+      </div>
+    </aside>
+    <!-- messages between the users -->
+    <div class="col-lg-6 col-md-8 col-sm-12 msg-overflow">
+      <div>
+          <ul class="list-group" id="messages">
+        {% for msg in messages %}
+            {% if not msg.is_sender_worker %}
+          <li class="list-group-item ">
+            <img src="{{ msg.dog_owner.photo }}" alt="" class="timeline-image">
+            <div class="message-area">
+              <p><b>{{ msg.dog_owner.name }}</b>, said:<span class="text-muted ml-5">{{ msg.date.strftime('%d %B %Y') }}</span></p>
+              <p>{{msg.text}}</p>
+            </div>
+          </li>
+            {% else %}
+            <li class="list-group-item ">
+                <img src="{{ msg.dog_walker.photo }}" alt="" class="timeline-image">
+                <div class="message-area">
+                    <p><b>{{ msg.dog_walker.name }}</b>, said:<span class="text-muted ml-5">{{ msg.date.strftime('%d %B %Y') }}</span></p>
+                    <p>{{msg.text}}</p>
+                </div>
+              </li>
+              {% endif %}
+        {% endfor %}
+      </ul>
+      </div>
+
+    </div>
+  </div> 
+   <!-- dog_walker card -->
+  <div class="row my-5">
+    <aside class="col-md-4 col-lg-3 col-sm-12" id="home-aside">
+        <div class="card user-card hide">
+          <div>
+            <div class="image-wrapper">
+                <img src="/static/images/image_header2.jpg" alt="" class="card-hero">
+            </div>
+            <a href="/dog_walkers/{{dog_walker.id}}" class="card-link">
+              <img src="{{ dog_walker.photo }}"
+                   alt="Image for {{ dog_walker.name}}"
+                   class="card-image">
+              <p>{{ dog_walker.name }}</p>
+            </a>
+          </div>
+        </div>
+      </aside>
+      <div class="col-lg-6 col-md-8 col-sm-12">
+        <form method="POST" id="user_form">
+            {{ form.hidden_tag() }}
+    
+            {% for field in form if field.widget.input_type != 'hidden' %}
+              {% for error in field.errors %}
+                <span class="text-danger">{{ error }}</span>
+              {% endfor %}
+
+                {{ field(placeholder=field.label.text, class="form-control") }}
+
+            {% endfor %}
+    
+            <button class="btn btn-primary btn-block btn-lg">Send</button>
+          </form>
+    </div>
+  </div>
+
+{% endblock %}
+

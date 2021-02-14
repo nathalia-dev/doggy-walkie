@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="profile-row" class="full-width">
+  <!-- <img src="/static/images/image_header.jpg"> -->
+</div>
+<img src="{{ user.photo }}" alt="Image for {{ user.name}}" id="profile-avatar">
+<div class="row full-width">
+  <div class="container">
+    <div class="row justify-content-end">
+      <div class="col-9">
+        <ul class="user-stats nav nav-pills">
+            {% if g.user.id == user.id and not session["is_worker"]%}
+                <li class="stat">
+                  <p class="small">Messages</p>
+                    <h4>
+                    <a href="/dog_owners/{{g.user.id}}/messages">{{ user.message | length }}</a>
+                    </h4>
+                </li>
+                <li class="stat">
+                    <p class="small">Appointments</p>
+                    <h4>
+                    <a href="/dog_owners/{{g.user.id}}/appointments">{{ user.appointments | length }}</a>
+                    </h4>
+                </li>
+            {% endif %}
+          <div class="ml-auto">
+            <a href="/dog_owners/{{user.id}}/dogs" class="btn btn-secondary mr-2">Dogs</a>
+            {% if g.user.id == user.id and not session["is_worker"]%}
+            <a href="/dog_owners/{{user.id}}/address" class="btn btn-outline-secondary mr-2"> Address</a>
+            <a href="/dog_owners/profile" class="btn btn-outline-secondary">Edit Profile</a>
+            <form method="POST" action="/dog_owners/delete" class="form-inline">
+              <button class="btn btn-outline-danger ml-2">Delete Profile</button>
+            </form>
+            {% endif %}
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-3">
+    <h4 id="sidebar-username">{{ user.name }}</h4>
+    <p class="user-location"><span class="fa fa-map-marker"></span> {{user.address.city}}</p>
+  </div>
+</div>
+
+<div class="row small-screen mt-2 justify-content-center">
+  <div class="col-6">
+    <a class="btn btn-secondary d-block" href="/dog_owners/{{user.id}}/dogs">Dogs</a>
+    {% if g.user.id == user.id and not session["is_worker"]%}
+      <a class="btn btn-secondary d-block mt-2" href="/dog_owners/{{g.user.id}}/messages">Messages</a>
+      <a class="btn btn-secondary d-block mt-2" href="/dog_owners/{{g.user.id}}/appointments">Appointments</a>
+      <a class="btn btn-secondary d-block mt-2" href="/dog_owners/{{user.id}}/address">Address</a>
+      <a class="btn btn-secondary d-block mt-2" href="/dog_owners/profile" >Edit Profile</a>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

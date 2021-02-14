@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% if appointments|length == 0 %}
+    <h3>No Appointments yet ...</h3>
+  {% else %}
+  <h2 class="my-5 text-center"> DONE APPOINTMENTS </h2>
+  
+    <div class="row justify-content-center">
+      <div class="col-sm-9">
+
+          <div class="row justify-content-between mb-3">
+              <a href="/dog_owners/{{g.user.id}}/appointments" class="btn btn-outline-dark justify-content-center">Appointments </a>
+          </div>
+
+        <div class="row">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Dog Walker</th>
+                <th scope="col">Date</th>
+                <th scope="col">Start at</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Rate</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for aptment in appointments %}
+                {% if aptment.status %}
+                    <tr>
+                        <th scope="row"><a href="/dog_walkers/{{aptment.dog_walker.id}}">{{aptment.dog_walker.name}}</a></th>
+                        <td>{{aptment.date}}</td>
+                        <td>{{aptment.time_start}} - {{aptment.day_period}}</td>
+                        <td>{{aptment.duration}}</td>
+                        {%if aptment.review%}
+                          {% for apt in aptment.review %}
+                            <td>Rated: {{apt.rate}}</td>
+                          {% endfor %}
+                        {% else %}
+                          <td><a href="/review/{{aptment.id}}"class="btn btn-outline-primary"><i class="far fa-star"></i></a></td>
+                        {% endif %}
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+          </table>
+          
+        
+           
+          
+
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
