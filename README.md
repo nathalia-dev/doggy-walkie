@@ -11,9 +11,9 @@ There are two goals:
 
 ### Project Tech Specs:
 
-- Language: Python 3.7.7
-- Framework: Flask
-- Database - PostgreSQL
+- Python 3.7.7
+- Flask
+- PostgreSQL
 - Boostrap 4.4
 
 
