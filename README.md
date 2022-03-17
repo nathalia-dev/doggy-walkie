@@ -1,6 +1,15 @@
-#Doggy Walkie
+# Doggy Walkie
 
-### 1) Project Tech Specs:
+### Description
+
+Doggy Walkie is a full stack application that provides the connection between 2 different users: the *dog owner* and the *dog walker*. 
+
+There are two goals: 
+
+- to facilite the search for a *dog walk* service.
+- to provide a place where anybody could earn an extra income. 
+
+### Project Tech Specs:
 
 - Language: Python 3.7.7
 - Framework: Flask
@@ -8,25 +17,23 @@
 - Boostrap 4.4
 
 
-### 2) Running the aplicattion:
+### Usage 🚀:
 
-- the requirements.txt file has all the dependecies necessary to run the application. 
+- The requirements.txt file has all the dependecies necessary to run the application. 
 
-- Inside the folder that has the project, create de Virtual Enviroment.  In your terminal write:
-	- python -m venv venv
+- Inside the folder that has the project, create the Virtual Enviroment.  In your terminal run: `python -m venv venv`.
 
-- After created the venv, open it. In your terminal write:
-	- source venv/bin/activate
+- After create the venv, open it. To do it, run: `source venv/bin/activate`.
 
-- With the venv opened, its time to install all the dependecies. In your terminal write:
-	- pip intall -r requirements.txt
+- With the venv opened, its time to install all the dependecies. In your terminal run: `pip intall -r requirements.txt`
 
-- now is time to run the application. In your terminal write:
-	- flask run
+- With the venv opened, its time to install all the dependecies. In your terminal run:
+
+- Now, it's time to run the application. In your terminal, run: `flask run`.
 
 _(Don't forget to create your database and run the seed.py file, if you want.)_
 
-### 3) Users Rules:
+### Users Rules:
 
 - The only thing that a not login person can do is to search for dog walker. They will be not allowed to see the entire profile. But only some informations
 
@@ -50,14 +57,14 @@ _(Don't forget to create your database and run the seed.py file, if you want.)_
 
 - The rate math is super simple: we sum all the rates values and divide by the number of appointments already reviewed. This average will be the dog_walker rate. 
 
-### 4) External API:
+### External API:
 
 - For add a dog in your profile , the application gets information in an External API called TheDogApi.
 
 - Link for the docs: https://docs.thedogapi.com/
 
 
-### 5) Tests:
+### Tests:
 
 - to run the tests, open the project folder, open the venv, as already explained before, and write in your terminal:
 
