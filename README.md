@@ -19,15 +19,11 @@ There are two goals:
 
 ### Usage 🚀:
 
-- The requirements.txt file has all the dependecies necessary to run the application. 
-
 - Inside the folder that has the project, create the Virtual Enviroment.  In your terminal run: `python -m venv venv`.
 
 - After create the venv, open it. To do it, run: `source venv/bin/activate`.
 
-- With the venv opened, its time to install all the dependecies. In your terminal run: `pip intall -r requirements.txt`
-
-- With the venv opened, its time to install all the dependecies. In your terminal run:
+- The requirements.txt file has all the dependecies necessary to run the application. So, once you have the venv opened, it's time to install all the dependecies. In your terminal run: `pip intall -r requirements.txt`.
 
 - Now, it's time to run the application. In your terminal, run: `flask run`.
 
