@@ -1,6 +1,6 @@
 # Doggy Walkie
 
-### Description
+### Description:
 
 Doggy Walkie is a full stack application that provides the connection between 2 different users: the *dog owner* and the *dog walker*. 
 
@@ -36,7 +36,7 @@ There are two goals:
 - To create all the tables and populate it with an initial set of data, please from your terminal, at the he project's root directory, run: `python seed.py`. 
 - Let's run the application. In your terminal, please type: `flask run`. Please, use the URL `http://localhost:5000/` .
 
-### Project Functionalities
+### Project Functionalities:
 
 - The project is divided by 6 aspects: users, authentication, dogs, messages, appointments and reviews.
 - There are 2 types of users: the dog_owner and the dog_walker.
@@ -73,7 +73,7 @@ There are two goals:
 - open your terminal and go to the project's root directory.
 - Open the *venv*, as already explained before, and run in your terminal the following command: `python -m unittest -v` adding in the end of it the test file name you want. e.g.: `python -m unittest -v test_anytestfilename.py`
 
-### Future Improvements
+### Future Improvements:
 
 - Redo the database's schema for users, which will improve the way that the app control if the logged in user is a dow_owner or a dog_walker. 
 - Better organize the project files structure, especially inside the `app.py` file.
