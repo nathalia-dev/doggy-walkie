@@ -23,7 +23,7 @@ There are two goals:
 
 - After create the venv, open it. To do it, run: `source venv/bin/activate`.
 
-- The `requirements.txt` file has all the dependecies necessary to run the application. So, once you have the venv opened, it's time to install all the dependecies. In your terminal run: `pip intall -r requirements.txt`.
+- The `requirements.txt` file has all the dependecies necessary to run the application. So, once you already have the venv opened, it's time to install all the dependecies. In your terminal run: `pip intall -r requirements.txt`.
 
 - Now, it's time to run the application. In your terminal, run: `flask run`.
 
