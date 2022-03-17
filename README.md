@@ -13,7 +13,7 @@ There are two goals:
 
 - Language: Python 3.7.7
 - Framework: Flask
-- Database - PSQL
+- Database - PostgreSQL
 - Boostrap 4.4
 
 
@@ -35,23 +35,23 @@ _(Don't forget to create your database and run the seed.py file, if you want.)_
 
 - When sign in, the user must choose betwwen a dog walker or dog owner, using the switch button.
 
-- The users dont need to add an address. But this is important to the dog walker, because without an address, nobody will know about where the dog_walker works. 
+- The users don't need to add an address. But this is important to the dog walker, because without an address, nobody will know about where the dog_walker works. 
 
-- The dog walker could use the description to write about his service.
+- The dog walker could use the description to write about his/her service.
 
-- Dog owners could add dogs. It is required to inform the name, breed, age and weight. The dog owner could use the dog description field to describe his dog behavior.
+- Dog owners can add dogs. It is required to inform the name, breed, age and weight. The dog owner can use the dog description field to describe his/her dog behavior.
 
-- To start to communicate, the dog owner must send the first message to the dog walker. The oposite is not allowed. Only after the first message, the dog_walker can look the dog owner profile and also create an appointment. 
+- To start to communicate, the dog owner must send the first message to the dog walker. The oposite is not allowed. Only after the first message, the dog_walker can look the dog owner's profile and also creates an appointment. 
 
 - Only the dog walker is allowed to cancel the appointment. 
 
-- Only "done appointments" could be reviewed.
+- Only "done appointments" could be rated/reviewed.
 
-- When the appointment was done/completed, the dog walker must to mark as a done appointment in the system. That way, the dog owner will be able to review the appointment.
+- When the appointment was done/completed, the dog walker must mark as a *done appointment* in the system. That way, the dog owner will be able to review the appointment.
 
 - Once the dog owner rated the appointment, it will count as the dog walker rate. 
 
-- The rate math is super simple: we sum all the rates values and divide by the number of appointments already reviewed. This average will be the dog_walker rate. 
+- The rate math is super simple: It sum all the rates values and divide by the number of appointments already reviewed. This average will be the dog_walker rate. 
 
 ### External API:
 
@@ -62,8 +62,6 @@ _(Don't forget to create your database and run the seed.py file, if you want.)_
 
 ### Tests:
 
-- to run the tests, open the project folder, open the venv, as already explained before, and write in your terminal:
-
-	- python -m unittest -v test_file.name.py
+- to run the tests, open the project folder, open the venv, as already explained before, and run in your terminal: `python -m unittest -v test_file.name.py`.
 
 _(Don't forget to create your test database.)_
