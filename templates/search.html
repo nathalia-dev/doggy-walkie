@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
   {% if dog_walkers|length == 0 %}
-    <h2 class="join-message text-center mt-5 mb-5"> Sorry, no dog walkers were founded...</h2>
+  
+  <h2 class="join-message text-center mt-5 mb-5"> Dog walker not found </h2>
+  <div class="row justify-content-center">
+    <a href="/dog_walkers?q" class="btn btn-primary">Show All Dog Walkers </a>
+  </div>
+   
   {% else %}
   <h2 class="join-message text-center mt-5 mb-5">YOUR RESULTS</h2>
     <div class="row justify-content-center">

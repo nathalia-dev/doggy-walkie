@@ -5,7 +5,7 @@ from datetime import datetime
 
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import column_property
+from sqlalchemy.orm import column_property, validates
 
 
 bcrypt = Bcrypt()
@@ -59,9 +59,14 @@ class Dog_Owner(db.Model):
         default = "/static/images/profile_no_photo.jpg"
     )
     
-
     def __repr__(self):
         return f"<Dog_Owner User #{self.id}: {self.email}, {self.first_name} {self.last_name}>"
+
+    @validates('first_name', 'last_name')
+    def convert_upper(self, key, value):
+        return value.capitalize()
+
+   
 
     @classmethod
     def signup(cls, first_name, last_name, email, password):
@@ -172,7 +177,11 @@ class Dog_Walker(db.Model):
 
     def __repr__(self):
         return f"<Dog_Walker User #{self.id}: {self.email}, {self.first_name} {self.last_name}>"
-
+    
+    @validates('first_name', 'last_name')
+    def convert_upper(self, key, value):
+        return value.capitalize()
+        
     @classmethod
     def signup(cls, first_name, last_name, email, password):
         """Sign up dog_owner.

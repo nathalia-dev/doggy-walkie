@@ -5,6 +5,7 @@ import config
 from flask import Flask, render_template, request, flash, redirect, session, g, Response
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import func
 
 from functions import is_worker, calculate_dog_walker_rate
 from models import db, connect_db, Dog_Owner, Dog_Walker, Address, Dog, Message, Appointment, Review
@@ -14,7 +15,10 @@ CURR_USER_KEY = "curr_user"
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = (os.environ.get('DATABASE_URL', 'postgres:///doggy_walkie'))
+
+# to heroku: os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
@@ -77,14 +81,14 @@ def home():
 def search():
     """Handle the search for dog_walkers"""
 
-    search = request.args.get("q")
-    
+    search = (request.args.get("q")).capitalize()
+
     if not search:
         dog_walkers = Dog_Walker.query.all()
 
     else:
         dog_walkers = Dog_Walker.query.filter(Dog_Walker.name.like(f"%{search}%")).all()
-    
+
     
     return render_template("search.html", dog_walkers = dog_walkers)
 
@@ -557,7 +561,7 @@ def add_dogs(dog_owner_id):
 
         # requesting an external API to fullfield the breed options.
         params = {
-            "x-api-key": config.api_key
+            "x-api-key": config.api_key if config.api_key is not None else os.getenv("DOG_API_KEY", "optional-default")
         }
 
         res = requests.get("https://api.thedogapi.com/v1/breeds", params=params)
@@ -671,7 +675,7 @@ def show_dog_details(dog_id):
     dog = Dog.query.get_or_404(dog_id)
     dog_owner = dog.dog_owner
 
-    #catching the dog_walkers who already exchange messages with the dog_owners,so they can see dog profile.
+    #catching the dog_walkers who already exchange messages with the dog_owners,so they can see dog's profile.
     dog_walker_with_messages = [msg.dog_walker for msg in dog_owner.message]
 
     if not g.user:
@@ -836,7 +840,7 @@ def create_appointment():
     if is_worker(g.user):
         form = New_Appointment_Form()
 
-        # catching all the dog_owners that has sent a message to our dog_worker.
+        # catching all the dog_owners that has sent a message to dog_worker.
         dog_owners = [msg.dog_owner for msg in g.user.message]
         
 
