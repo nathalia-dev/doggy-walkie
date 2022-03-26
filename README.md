@@ -32,7 +32,7 @@ There are two goals:
 - Now you need to create the *Virtual Enviroment* (venv).  In your terminal, inside the project's root directory,  run: `python -m venv venv`.
 - After create the *venv*, let's open it. To do it, run: `source venv/bin/activate`.
 - The `requirements.txt` file has all the dependecies necessary to run the application. So, once you already have the *venv* opened, it's time to install all the dependecies. In your terminal run: `pip intall -r requirements.txt`.
-- Now, let's go for the database part. Please, using PostgreSQL, create a database called "doggy_walkie".
+- Now, let's go for the database part. Please, using PostgreSQL, create a database called "doggy_walkie". If you are new to PostgreSQL , please click [here](https://www.postgresql.org/).
 - To create all the tables and populate it with an initial set of data, please from your terminal, at the he project's root directory, run: `python seed.py`. 
 - Let's run the application. In your terminal, please type: `flask run`. Please, use the URL `http://localhost:5000/` .
 
