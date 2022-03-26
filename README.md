@@ -24,6 +24,25 @@ There are two goals:
 - Bcrypt: It helps to encrypt the user's password before send it to the database
 - Unittest: standart built-in library from python to test. 
 
+### Project Functionalities:
+
+- The project is divided by 6 aspects: users, authentication, dogs, messages, appointments and reviews.
+- There are 2 types of users: the dog_owner and the dog_walker.
+- The authentication process uses the *session extension*, which enables to store user's information throughtout a session. 
+- The dog_owner can create a dog profile, sharing all the important informations about the dog. The dog_walker can view those dog's profile, to better understand the dog he/she will probably walk with. 
+- Both user's can exchange messages. It works as a little simple chat.
+- After chating, the dog_walker can create an appointment, which will have the day and time that both user's have agreed upon. Those appointments have a status that can be done/undone. Once it is done, it enables the review feature. 
+- The dow_owner can review the dog_walker service. 
+
+### Deploy:
+
+- The full project was deployed using heroku. Check it [here](https://doggy-walkie.herokuapp.com/).
+- to login:
+
+| Email              | Password    | User's Type |
+| ------------------ | ----------- | ----------- | 
+| kate@email.com     | 123456      | Dog Owner   |
+| beth@email.com     | 123456      | Dog Walker  |
 
 ### Usage 🚀:
 
@@ -35,16 +54,6 @@ There are two goals:
 - Now, let's go for the database part. Please, using PostgreSQL, create a database called "doggy_walkie". If you are new to PostgreSQL , please click [here](https://www.postgresql.org/).
 - To create all the tables and populate it with an initial set of data, please from your terminal, at the he project's root directory, run: `python seed.py`. 
 - Let's run the application. In your terminal, please type: `flask run`. Please, use the URL `http://localhost:5000/` .
-
-### Project Functionalities:
-
-- The project is divided by 6 aspects: users, authentication, dogs, messages, appointments and reviews.
-- There are 2 types of users: the dog_owner and the dog_walker.
-- The authentication process uses the *session extension*, which enables to store user's information throughtout a session. 
-- The dog_owner can create a dog profile, sharing all the important informations about the dog. The dog_walker can view those dog's profile, to better understand the dog he/she will probably walk with. 
-- Both user's can exchange messages. It works as a little simple chat.
-- After chating, the dog_walker can create an appointment, which will have the day and time that both user's have agreed upon. Those appointments have a status that can be done/undone. Once it is done, it enables the review feature. 
-- The dow_owner can review the dog_walker service. 
 
 ### User's Rules:
 
@@ -59,7 +68,6 @@ There are two goals:
 - When the appointment was done/completed, the dog walker must mark as a *done appointment* in the system. That way, the dog owner will be able to review the appointment.
 - Once the dog owner rates the appointment, it will count as the dog walker rate. 
 - The rate math is super simple: It sum all the rates values and divide it by the number of appointments already reviewed. This average will be the dog_walker rate. 
-
 
 ### External API:
 
