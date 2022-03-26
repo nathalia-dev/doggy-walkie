@@ -710,7 +710,7 @@ def edit_dog_details(dog_id):
 
         # requesting an external API to fullfield the breeds options.
         params = {
-            "x-api-key": config.api_key
+            "x-api-key": config.api_key if config.api_key is not None else os.getenv("DOG_API_KEY", "optional-default")
         }
 
         res = requests.get("https://api.thedogapi.com/v1/breeds", params=params)
