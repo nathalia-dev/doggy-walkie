@@ -10,8 +10,8 @@ address2 = Address(address = "4337 Kenilworth Avenue", zipcode = 28204, city = "
 address3 = Address(address = "202 Park Road", zipcode = 28209, city = "Charlotte", state = "North Carolina", neighbor = "Myers Park")
 address4 = Address(address = "905 S Sharon Amity", zipcode = 28211, city = "Charlotte", state = "North Carolina", neighbor = "Cotwolds")
 
-Dog_Owner.signup(first_name = "kate", last_name = "Owner", email = "kate@email.com", password = "123456")
-Dog_Owner.signup(first_name = "kevin", last_name = "Owner", email = "kevin@email.com", password = "123456")
+Dog_Owner.signup(first_name = "Kate", last_name = "Owner", email = "kate@email.com", password = "123456")
+Dog_Owner.signup(first_name = "Kevin", last_name = "Owner", email = "kevin@email.com", password = "123456")
 
 Dog_Walker.signup(first_name = "Randon", last_name = "Walker", email = "randon@email.com",  password = "123456")
 Dog_Walker.signup(first_name = "Beth", last_name = "Walker", email = "beth@email.com",  password = "123456")
